@@ -17,3 +17,24 @@ let maxSum = sum - min
 console.log(minSum, maxSum)
 
 }
+
+
+// Given a time in -hour AM/PM format, convert it to military (24-hour) time.
+
+// Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+// - 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+
+function timeConversion(str) {
+  // split the time at the colon, then again for the am/pm
+  // evaulate if PM and not midnight add 12 to the first index holding hours
+  // create an else edge case if it is noon to set [0] to 00
+  // join the split stings with a colon between and no am pm
+  let split = str.split(":")
+  let sub = split[2].substring(2,4)
+  if (sub == 'PM' && split[0] !== "12") {
+    split[0] = (parseInt(split[0]) + 12).toString()
+  } else if (sub == 'AM' && split[0] === "12") {
+    split[0] = "00"
+  }
+  return (split.join(":").slice(0,8))
+}
