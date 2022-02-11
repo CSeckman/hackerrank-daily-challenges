@@ -38,3 +38,53 @@ function timeConversion(str) {
   }
   return (split.join(":").slice(0,8))
 }
+
+
+// FEB 10 2022
+// find the median of an unsorted array
+
+function findMedian(arr) {
+  // sort the array
+  // finding the min and pushing that to a variable
+  // splicing out that element from the array
+  let sortedArray = []
+  let min
+  while(arr.length > 0){
+    min = Math.min(...arr)
+    sortedArray.push(min)
+    arr.splice(arr.indexOf(min), 1)
+  }
+  // Find the median
+  let length = sortedArray.length
+  if (length % 2 !== 0) {
+    return (sortedArray[Math.floor(length/2)])
+  } else {
+    return ((sortedArray[length / 2] + sortedArray[(length / 2) -1]) / 2)
+  }
+}
+
+console.log(findMedian([25,6,8,1,91,4]))
+
+// same function for median but finds the min while sorting without the method
+
+function findMedian(arr) {
+  let sortedArray = []
+  while(arr.length > 0) {
+    let min = arr[0]
+    for(i=0; i<arr.length; i++){
+      arr[i] < min ? min = arr[i] : min
+    }
+    sortedArray.push(min)
+    arr.splice(arr.indexOf(min), 1)
+  }
+  let length = sortedArray.length
+  if (length % 2 !== 0) {
+    return (sortedArray[Math.floor(length/2)])
+  } else {
+    return ((sortedArray[length / 2] + sortedArray[(length / 2) -1]) / 2)
+  }
+}
+
+console.log(findMedian([25,6,6,91,4]))
+
+
